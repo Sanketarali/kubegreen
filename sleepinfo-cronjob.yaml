@@ -1,0 +1,25 @@
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: sleepinfo-creator
+  namespace: kube-green
+spec:
+  schedule: "30 6 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          serviceAccountName: sleepinfo-job-sa
+          containers:
+          - name: sleepinfo-job
+            image: bitnami/kubectl:latest
+            command: ["/bin/bash", "/scripts/sleepinfo.sh"]
+            volumeMounts:
+            - name: script-volume
+              mountPath: /scripts
+          restartPolicy: OnFailure
+          volumes:
+          - name: script-volume
+            configMap:
+              name: sleepinfo-script
+              defaultMode: 0777
