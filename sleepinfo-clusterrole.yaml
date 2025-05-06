@@ -1,0 +1,20 @@
+# sleepinfo-clusterrole.yaml
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: sleepinfo-job-clusterrole
+rules:
+  - apiGroups: [""]
+    resources: ["namespaces"]
+    verbs: ["get", "list"]
+  - apiGroups: ["apps"]
+    resources: ["deployments", "statefulsets"]
+    verbs: ["get", "list"]
+  - apiGroups: ["batch"]
+    resources: ["cronjobs"]
+    verbs: ["get", "list"]
+  - apiGroups: ["kube-green.com"]
+    resources: ["sleepinfos"]
+    verbs: ["create", "update", "get", "list", "patch", "watch"]
+
+~
