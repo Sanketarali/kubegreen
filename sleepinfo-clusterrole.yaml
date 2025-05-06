@@ -17,4 +17,3 @@ rules:
     resources: ["sleepinfos"]
     verbs: ["create", "update", "get", "list", "patch", "watch"]
 
-~
