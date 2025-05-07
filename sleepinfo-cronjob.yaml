@@ -4,7 +4,7 @@ metadata:
   name: sleepinfo-creator
   namespace: kube-green
 spec:
-  schedule: "30 6 * * *"
+  schedule: "13 16 * * *"  # 9:30 PM IST
   jobTemplate:
     spec:
       template:
